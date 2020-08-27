@@ -66,7 +66,7 @@ export default class Project {
     const idx = this.cloudProviders.findIndex(provider =>
         provider.target === catalog.cloudProvider.target
     );
-    if (idx > -1){
+    if (idx > -1) {
       this.cloudProviders[idx] = catalog.cloudProvider;
     } else {
       this.cloudProviders.push(catalog.cloudProvider);
@@ -74,7 +74,7 @@ export default class Project {
     this.components.forEach(componentWrapper => {
         const id = componentWrapper.component.id;
         const catalogComponent = catalog.getComponentById(id);
-        if(catalogComponent){
+        if (catalogComponent) {
           componentWrapper.component.bindTo(catalogComponent);
         }
     });
