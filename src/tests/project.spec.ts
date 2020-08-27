@@ -46,7 +46,7 @@ describe('Projects', () => {
           'h': 30,
           'w': 30,
         },
-        'component': 'service_1',
+        'component': 'Mongo Instance',
         }, {
           'type': 'Instance',
           'id': 'graph_1_2',
@@ -56,7 +56,7 @@ describe('Projects', () => {
             'h': 30,
             'w': 30,
           },
-          'component': 'service_2',
+          'component': 'Spring Instance',
           }],
         'edges': [{
           'type': 'Message',
@@ -77,16 +77,38 @@ describe('Projects', () => {
         'id': 'service_1',
         'name': 'Spring Boot',
         'img': 'imgurl1',
-        'attributes': [],
-        'targetCloud': 'Azure'
+        'attributes': [{
+          'id': 'name',
+          'name': 'Name',
+          'type': 'string',
+          'value': 'Spring Instance'
+        }],
+        'targetCloud': 'Azure',
+        'regions' : [
+          {
+            'id' : 'any',
+            'name': 'allof the availible regions'
+        }
+        ]
       },
       {
         'type': 'Service',
         'id': 'service_2',
         'name': 'Mongo DB',
         'img': 'imgurl2',
-        'attributes': [],
-        'targetCloud': 'Azure'
+        'attributes': [{
+          'id': 'name',
+          'name': 'Name',
+          'type': 'string',
+          'value': 'Mongo Instance'
+        }],
+        'targetCloud': 'Azure',
+        'regions' : [
+          {
+            'id' : 'any',
+            'name': 'allof the availible regions'
+        }
+        ]
       }
     ],
     'cloudProviders': [{

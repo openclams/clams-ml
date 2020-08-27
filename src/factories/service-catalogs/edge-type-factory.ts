@@ -22,7 +22,7 @@ export default class EdgeTypeFactory {
         }
         // ISSUE 10: we do not serialize allowd and exclude fields
         // Archtectual decision needs to be made later.
-        // * How do we behave if the componentes do not exits any more
+        // * How do we behave if the componentes do not exits anymore
         // * What are de implications for copy/past of an edge
         // if(this.allowed){
         //   jsonEdgeType['allowed'] = this.allowed.map(item => Object.assign({'from':item.from.id,'to':item.to.id},{}) );

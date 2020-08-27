@@ -63,6 +63,13 @@ export default  abstract class Component {
     return this.parent == null;
   }
 
+  public bindTo(component: Component){
+    this.children  = component.children;
+    this.category = component.category;
+    this.parent = component.parent;
+    this.cloudProvider = component.cloudProvider;
+  }
+
   /**
    * Return the type of the component
    */

@@ -48,20 +48,6 @@ export default  class CloudProvider {
     this.catalog = null;
   }
 
-  /**
-   * Bind the service catalog to cloud provider.
-   * Key idea. When a project gets serlialized the catalog is
-   * ignored, because it is to large. In order to compute parent
-   * and child nodes for the components in the sequence diagrams,
-   * we need to load the service catalog and attach it to the cloud provider.
-   */
-  public bind(catalog: Catalog) {
-    this.catalog = catalog;
-    this.catalog.components.forEach(component => {
-      component.cloudProvider = this;
-
-    });
-  }
 }
 
 

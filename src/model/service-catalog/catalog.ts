@@ -1,6 +1,7 @@
 import EdgeType from './edge-type';
 import Component from './component';
 import Category from './category';
+import CloudProvider from './cloud-provider';
 
 /**
  * The service catalog, which contains
@@ -8,6 +9,7 @@ import Category from './category';
  * in sequence diagrams.
  */
 export default class Catalog {
+
 
   /**
    * Components are sorted according to categories.
@@ -22,7 +24,7 @@ export default class Catalog {
    * @param components All its components
    */
   constructor(public edges: EdgeType[] = [],
-              public components: Component[] = []) {
+              public components: Component[] = [], public cloudProvider: CloudProvider) {
     this.categories = this.initCategories(components);
   }
 

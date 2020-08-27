@@ -109,8 +109,8 @@ export class InstanceFactory {
         instance.geometry = GeometryFactory.fromJSON(jsonInstance.geometry);
         if (this instanceof Graph) {
             instance.graph = this;
-
-            const componentWrapper = this.project.components.find(c => c.component.id === jsonInstance.component);
+            const name = jsonInstance.component;
+            const componentWrapper = this.project.components.find(c => c.component.getAttribute('name').value === name);
             instance.componentWrapper = componentWrapper;
             componentWrapper.instances.push(instance);
         }
@@ -121,7 +121,7 @@ export class InstanceFactory {
             'type': instance.getType(),
             'id': instance.id,
             'geometry': GeometryFactory.toJSON(instance.geometry),
-            'component': instance.component.id
+            'component': instance.component.getAttribute('name').value
         };
     }
 }
