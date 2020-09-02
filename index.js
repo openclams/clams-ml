@@ -1,1 +1,1 @@
-export * from "./src/factories/graphs/"
+export * from "./src/factories/graphs/arrow-factory"
