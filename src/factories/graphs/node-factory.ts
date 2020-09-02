@@ -7,7 +7,6 @@ import GeometryFactory from './geometry-factory';
 import Graph from '../../model/graphs/graph';
 import Node from '../../model/graphs/node';
 import UserProfile from '../../model/graphs/user-profile/user-profile';
-import SequenceDiagram from '../../model/graphs/sequence-diagram/sequence-diagram';
 
 
 export default class NodeFactory {

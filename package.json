@@ -4,7 +4,7 @@
   "description": "Core library of the data model for the Clams modeling language.",
   "scripts": {
     "build": "npx webpack --config=webpack.config.js",
-    "test":  "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/**/*.spec.ts'"
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/**/*.spec.ts'"
   },
   "keywords": [
     "Cloud",
