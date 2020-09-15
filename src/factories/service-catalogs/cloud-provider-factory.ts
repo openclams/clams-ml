@@ -1,5 +1,5 @@
 import CloudProvider from '../../model/service-catalog/cloud-provider';
-import JsonCloudProvider from '../../json-model/service-catalog/json-cloud-provider';
+import JsonCloudProvider from '../../schema/service-catalog/json-cloud-provider';
 import RegionFactory from './region-factory';
 
 export  default class CloudProviderFactory {
@@ -11,14 +11,14 @@ export  default class CloudProviderFactory {
     }
     public static toJSON(cloudProvider: CloudProvider): JsonCloudProvider {
         const jsonCloudProvider: JsonCloudProvider = {
-            'target': cloudProvider.target,
-            'title': cloudProvider.title,
-            'company': cloudProvider.company,
-            'costLookupFile': cloudProvider.costLookupFile,
-            'basePath': cloudProvider.basePath,
-            'catalogFile': cloudProvider.catalogFile,
-            'image': cloudProvider.image,
-            'regions': cloudProvider.regions.map(region => RegionFactory.toJSON(region))
+            target: cloudProvider.target,
+            title: cloudProvider.title,
+            company: cloudProvider.company,
+            costLookupFile: cloudProvider.costLookupFile,
+            basePath: cloudProvider.basePath,
+            catalogFile: cloudProvider.catalogFile,
+            image: cloudProvider.image,
+            regions: cloudProvider.regions.map(region => RegionFactory.toJSON(region))
         };
         return jsonCloudProvider;
     }

@@ -1,4 +1,4 @@
-import JsonNode from '../../json-model/graphs/json-node';
+import JsonNode from '../../schema/graphs/json-node';
 import Dot from '../../model/graphs/user-profile/dot';
 import State from '../../model/graphs/user-profile/state';
 import Template from '../../model/graphs/sequence-diagram/template';
@@ -49,9 +49,9 @@ export class DotFactory {
     }
     public static toJSON(dot: Dot): JsonNode {
         return {
-            'type': dot.getType(),
-            'id': dot.id,
-            'geometry': GeometryFactory.toJSON(dot.geometry)
+            type: dot.getType(),
+            id: dot.id,
+            geometry: GeometryFactory.toJSON(dot.geometry)
         };
     }
 }
@@ -68,10 +68,10 @@ export class StateFactory {
     }
     public static toJSON(state: State): JsonNode {
         return {
-            'id': state.id,
-            'type': state.getType(),
-            'graph': state.graph.id,
-            'geometry': GeometryFactory.toJSON(state.geometry)
+            id: state.id,
+            type: state.getType(),
+            graph: state.graph.id,
+            geometry: GeometryFactory.toJSON(state.geometry)
         };
     }
 }
@@ -84,20 +84,21 @@ export class TemplateFactory {
         if (this instanceof Graph) {
             template.graph = this;
 
-            const componentWrapper = this.project.components.find(c => c.component.id === jsonInstance.component);
+            const componentWrapper = this.model.components.find(c => c.component.id === jsonInstance.component);
             template.componentWrapper = componentWrapper;
 
             template.nodes = jsonInstance.nodes.map(jsonNode => NodeFactory.fromJSON.call(this, jsonNode));
+            template.nodes.forEach(node => node.parent = template);
         }
         return template;
     }
     public static toJSON(template: Template): JsonNode {
         return {
-            'type': template.getType(),
-            'id': template.id,
-            'geometry': GeometryFactory.toJSON(template.geometry),
-            'component': template.component.id,
-            'nodes': template.nodes.map(node => NodeFactory.toJSON(node))
+            type: template.getType(),
+            id: template.id,
+            geometry: GeometryFactory.toJSON(template.geometry),
+            component: template.component.id,
+            nodes: template.nodes.map(node => NodeFactory.toJSON(node))
         };
     }
 }
@@ -110,7 +111,7 @@ export class InstanceFactory {
         if (this instanceof Graph) {
             instance.graph = this;
             const name = jsonInstance.component;
-            const componentWrapper = this.project.components.find(c => c.component.getAttribute('name').value === name);
+            const componentWrapper = this.model.components.find(c => c.component.getAttribute('name').value === name);
             instance.componentWrapper = componentWrapper;
             componentWrapper.instances.push(instance);
         }
@@ -118,10 +119,10 @@ export class InstanceFactory {
     }
     public static toJSON(instance: Instance): JsonNode {
         return {
-            'type': instance.getType(),
-            'id': instance.id,
-            'geometry': GeometryFactory.toJSON(instance.geometry),
-            'component': instance.component.getAttribute('name').value
+            type: instance.getType(),
+            id: instance.id,
+            geometry: GeometryFactory.toJSON(instance.geometry),
+            component: instance.component.getAttribute('name').value
         };
     }
 }

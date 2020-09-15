@@ -1,12 +1,12 @@
-import JsonComponent from '../../json-model/graphs/json-component';
+import JsonComponent from '../../schema/graphs/json-component';
 import Component from '../../model/service-catalog/component';
 import Pattern from '../../model/service-catalog/pattern';
 import Service from '../../model/service-catalog/service';
 import TemplateType from '../../model/service-catalog/template';
 import AttributeFactory from './attribute-factory';
-import Project from '../../model/project';
+import Model from '../../model/model';
 import RegionFactory from './region-factory';
-import CloudProvider from 'src/model/service-catalog/cloud-provider';
+import CloudProvider from '../../model/service-catalog/cloud-provider';
 
 
 export default class ComponentFactory {
@@ -14,7 +14,7 @@ export default class ComponentFactory {
         const attributes =  jsonComponent.attributes.map(a => AttributeFactory.fromJSON(a));
 
         let cloudProvider: CloudProvider = null;
-        if (this instanceof Project) {
+        if (this instanceof Model) {
             cloudProvider = this.cloudProviders.find(p => p.target === jsonComponent.targetCloud);
         }
 
@@ -39,24 +39,26 @@ export default class ComponentFactory {
     }
     public static toJSON(component: Component): JsonComponent {
         const jsonComponent = {
-            'type': component.getType(),
-            'id': component.id,
-            'name': component.name,
-            'img': component.img,
-            'attributes': component.attributes.map(a => AttributeFactory.toJSON(a)),
-            'targetCloud': component.cloudProvider.target
+            type: component.getType(),
+            id: component.id,
+            name: component.name,
+            img: component.img,
+            attributes: component.attributes.map(a => AttributeFactory.toJSON(a)),
+            targetCloud: component.cloudProvider.target,
+            components: null,
+            regions: null
         };
         if (component instanceof TemplateType) {
-            jsonComponent['components'] = component.components.map(c => ComponentFactory.toJSON(c));
+            jsonComponent.components = component.components.map(c => ComponentFactory.toJSON(c));
         }
         if (component instanceof Service) {
-            jsonComponent['regions'] = component.regions.map(r => RegionFactory.toJSON(r));
+            jsonComponent.regions = component.regions.map(r => RegionFactory.toJSON(r));
         }
         return jsonComponent;
     }
 
-    public static copy(component: Component, project?: Project): Component {
+    public static copy(component: Component, model?: Model): Component {
         const jsonComponent = ComponentFactory.toJSON(component);
-        return ComponentFactory.fromJSON.call(project, jsonComponent);
+        return ComponentFactory.fromJSON.call(model, jsonComponent);
     }
 }

@@ -1,4 +1,4 @@
-import JsonEdgeType from '../../json-model/service-catalog/json-edge-type';
+import JsonEdgeType from '../../schema/service-catalog/json-edge-type';
 import EdgeType from '../../model/service-catalog/edge-type';
 import AttributeFactory from './attribute-factory';
 
@@ -13,12 +13,12 @@ export default class EdgeTypeFactory {
     }
     public static toJSON(edgetype: EdgeType): JsonEdgeType {
         const jsonEdgeType = {
-            'id': edgetype.id,
-            'name': edgetype.name,
-            'attributes': [],
+            id: edgetype.id,
+            name: edgetype.name,
+            attributes: [],
         } as JsonEdgeType;
         if (edgetype.attributes) {
-            jsonEdgeType['attributes'] = edgetype.attributes.map(attr => AttributeFactory.toJSON(attr));
+            jsonEdgeType.attributes = edgetype.attributes.map(attr => AttributeFactory.toJSON(attr));
         }
         // ISSUE 10: we do not serialize allowd and exclude fields
         // Archtectual decision needs to be made later.

@@ -1,13 +1,13 @@
-import JsonCatalog from '../../json-model/service-catalog/json-catalog';
+import JsonCatalog from '../../schema/service-catalog/json-catalog';
 import Catalog from '../../model/service-catalog/catalog';
 import Component from '../../model/service-catalog/component';
 import Service from '../../model/service-catalog/service';
 import AttributeFactory from './attribute-factory';
-import Pattern from 'src/model/service-catalog/pattern';
-import Template from 'src/model/service-catalog/template';
-import EdgeType from 'src/model/service-catalog/edge-type';
+import Pattern from '../../model/service-catalog/pattern';
+import Template from '../../model/service-catalog/template';
+import EdgeType from '../../model/service-catalog/edge-type';
 import EdgeTypeFactory from './edge-type-factory';
-import CloudProvider from 'src/model/service-catalog/cloud-provider';
+import CloudProvider from '../../model/service-catalog/cloud-provider';
 
 export default class CatalogFactory {
     public static fromJSON(cloudProvider: CloudProvider, jsonCatalog: JsonCatalog): Catalog {
@@ -15,11 +15,12 @@ export default class CatalogFactory {
 
         const components: Component[] = jsonCatalog.nodes.map<Component>(jsonCatalogComponent => {
             let component: Component = null;
-            if (jsonCatalogComponent.children && jsonCatalogComponent.children.length > 0) {
+
+            if (jsonCatalogComponent.children && !jsonCatalogComponent.children.length) {
                 // We have a service
                 component = new Service(jsonCatalogComponent.id,
                     jsonCatalogComponent.name,
-                    jsonCatalogComponent.img,
+                    cloudProvider.basePath + jsonCatalogComponent.img,
                     [],
                     cloudProvider);
 
@@ -50,7 +51,7 @@ export default class CatalogFactory {
                 // We have a pattern
                 component = new Pattern(jsonCatalogComponent.id,
                     jsonCatalogComponent.name,
-                    jsonCatalogComponent.img,
+                    cloudProvider.basePath + jsonCatalogComponent.img,
                     [],
                     cloudProvider);
             }
@@ -67,6 +68,14 @@ export default class CatalogFactory {
         // Connect parents and childrens
         jsonCatalog.nodes.forEach(jsonCatalogComponent => {
            const component = cachedComponents[jsonCatalogComponent.id];
+
+           // If a component is not in the cache then it was filtered,
+           // becasue it belongs to a different region
+           // We just ignore this component then
+           if (component === undefined) {
+                 return;
+            }
+
            if ('parents' in jsonCatalogComponent &&
                 jsonCatalogComponent.parents &&
                 jsonCatalogComponent.parents.length > 0) {
@@ -89,12 +98,12 @@ export default class CatalogFactory {
                 }
                 const template =  new Template(jsonCatalogTemplate.id,
                     jsonCatalogTemplate.name,
-                    jsonCatalogTemplate.img, attributes, cloudProvider);
+                    cloudProvider.basePath + jsonCatalogTemplate.img, attributes, cloudProvider);
                 cachedComponents[template.id] = template;
                 return template;
             });
 
-            components.concat(templates);
+            templates.forEach(t => components.push(t));
 
             // Add components to templates
             jsonCatalog.templates.forEach( jsonCatalogTemplate => {
