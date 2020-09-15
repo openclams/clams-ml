@@ -26,4 +26,8 @@ export default class Message extends Edge {
   public getType(): string {
     return 'Message';
   }
+
+  public getId(): string {
+    return this.from.id + this.to.id + this.position;
+  }
 }

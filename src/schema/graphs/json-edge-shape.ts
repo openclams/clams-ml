@@ -5,5 +5,5 @@
  * This interfce might be still subject to change.
  */
 export default interface JsonEdgeShape {
-    corners: number[];
+    corners: {x: number, y: number}[];
 }

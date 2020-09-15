@@ -5,6 +5,9 @@ import Edge from '../edge';
  * the states.
  */
 export default class Arrow extends Edge {
+  public getId(): string {
+    return this.from.id + this.to.id;
+  }
   /**
    * Probability annotation of the arrow.
    */
@@ -14,16 +17,10 @@ export default class Arrow extends Edge {
    * Shape infromation of the arrow's coners
    * for rendering.
    */
-  public shape: number[];
+  public shape: {x: number, y: number}[];
 
   constructor(from, to) {
     super(from, to);
-    const sumOutgoing = from.edgesOut.map(arrow => arrow.probability).reduce((previous, current) => previous + current, 0);
-    if (1 - sumOutgoing <= 0) {
-      this.probability = 0;
-    } else {
-      this.probability = 1 - sumOutgoing;
-    }
   }
 
   public getType(): string {

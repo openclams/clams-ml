@@ -1,4 +1,4 @@
-import JsonCost from '../../json-model/service-catalog/json-cost';
+import JsonCost from '../../schema/service-catalog/json-cost';
 import Cost from '../../model/service-catalog/cost';
 import RegionFactory from './region-factory';
 
@@ -12,10 +12,10 @@ export default class CostFactory {
     }
     public static toJSON(cost: Cost): JsonCost {
         return {
-            'region': RegionFactory.toJSON(cost.region),
-            'model': cost.model,
-            'units': cost.units,
-            'cost': cost.cost
+            region: RegionFactory.toJSON(cost.region),
+            model: cost.model,
+            units: cost.units,
+            cost: cost.cost
         };
     }
 }

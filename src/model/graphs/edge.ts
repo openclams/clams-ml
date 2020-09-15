@@ -17,4 +17,6 @@ export default abstract class Edge {
    * Return the type of the component
    */
   public abstract getType(): string;
+
+  public abstract getId(): string;
 }

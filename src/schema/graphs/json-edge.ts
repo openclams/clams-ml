@@ -49,5 +49,5 @@ export default interface JsonEdge {
      * Shape information of the arrow, when an arrow has
      * corners.
      */
-    shape?:  JsonEdgeShape;
+    shape?: JsonEdgeShape;
 }

@@ -1,4 +1,4 @@
-import JsonEdge from '../../json-model/graphs/json-edge';
+import JsonEdge from '../../schema/graphs/json-edge';
 import Arrow from '../../model/graphs/user-profile/arrow';
 import UserProfile from '../../model/graphs/user-profile/user-profile';
 import State from '../../model/graphs/user-profile/state';
@@ -23,12 +23,12 @@ export default class ArrowFactory {
     }
     public static toJSON(arrow: Arrow): JsonEdge {
         const jsonEdge = {
-            'type': arrow.getType(),
-            'from': arrow.from.id,
-            'to': arrow.to.id,
+            type: arrow.getType(),
+            from: arrow.from.id,
+            to: arrow.to.id,
+            p: arrow.probability,
+            shape: {corners: arrow.shape}
         };
-        jsonEdge['p'] = arrow.probability;
-        jsonEdge['shape'] = { 'corners': arrow.shape };
         return jsonEdge;
     }
 }

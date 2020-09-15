@@ -31,7 +31,8 @@ export default interface JsonNode {
     /**
      * [For Instances and Templetes]
      * Reference to particular component stored in the
-     * project's component array.
+     * model's component array. Here component referes to
+     * to the attribute 'name'.
      */
     component?: string;
 

@@ -23,7 +23,7 @@ export default abstract class Node {
    */
   constructor(public graph: Graph) {
     if (this.graph) {
-      this.id = this.graph.getNewId();
+      this.id = this.graph.getNewId(this.getType());
     }
     this.geometry = new Geometry(0, 0, 0, 0);
   }

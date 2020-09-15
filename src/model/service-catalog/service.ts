@@ -33,4 +33,11 @@ export default class Service extends Component {
   public getType(): string {
     return 'Service';
   }
+
+  public bindTo(component: Component){
+    super.bindTo(component);
+    if (component instanceof Service){
+      this.regions  = component.regions;
+    }
+  }
 }
