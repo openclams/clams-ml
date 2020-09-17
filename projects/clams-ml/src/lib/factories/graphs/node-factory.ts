@@ -75,6 +75,7 @@ export class StateFactory {
     }
 }
 
+// @dynamic
 export class TemplateFactory {
     public static fromJSON(jsonInstance: JsonNode): Template {
         const template = new Template(null, null);

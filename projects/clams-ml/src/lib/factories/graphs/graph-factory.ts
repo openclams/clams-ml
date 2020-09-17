@@ -7,7 +7,7 @@ import NodeFactory from './node-factory';
 import EdgeFactory from './edge-factory';
 import State from '../../model/graphs/user-profile/state';
 
-
+// @dynamic
 export default class GraphFactory {
     public static fromJSON(jsonGraph: JsonGraph): Graph {
         let graph: Graph = null;
@@ -44,7 +44,7 @@ export default class GraphFactory {
             }
         }
     }
-
+    
     public static toJSON(graph: Graph): JsonGraph {
         return {
             id: graph.id,
