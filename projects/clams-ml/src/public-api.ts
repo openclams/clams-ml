@@ -3,14 +3,22 @@
  */
 import Model from './lib/model/model';
 import ClamsProject from './lib/model/model';
-import JsonModel from './lib/schema/json-model';
+export {Model, ClamsProject};
+
+// Schema exports
+import JsonCatalog from './lib/schema/service-catalog/json-catalog';
 import JsonClamsProject from './lib/schema/json-model';
 import JsonCloudProvider from './lib/schema/service-catalog/json-cloud-provider';
-export {Model, ClamsProject, JsonModel, JsonClamsProject, JsonCloudProvider};
+import JsonCostLookupTable from './lib/schema/service-catalog/json-cost-lookup-table';
+import JsonModel from './lib/schema/json-model';
+export {JsonCatalog, JsonClamsProject, JsonCloudProvider, JsonCostLookupTable, JsonModel};
 
-import ModelFactory from './lib/factories/model-factory';
+// Factory exports
+import CatalogFactory from './lib/factories/service-catalogs/catalog-factory';
 import ComponentFactory from './lib/factories/service-catalogs/component-factory';
-export {ModelFactory, ComponentFactory};
+import CostFactory from './lib/factories/service-catalogs/cost-factory';
+import ModelFactory from './lib/factories/model-factory';
+export {CatalogFactory, ComponentFactory, CostFactory, ModelFactory};
 
 import Graph from './lib/model/graphs/graph';
 import Edge from './lib/model/graphs/edge';
@@ -25,17 +33,25 @@ import Message from './lib/model/graphs/sequence-diagram/message';
 import Template from './lib/model/graphs/sequence-diagram/template';
 export {SequenceDiagram, Element, Instance, Message, Template};
 
+import UserProfile from './lib/model/graphs/user-profile/user-profile';
 import State from './lib/model/graphs/user-profile/state';
 import Dot from './lib/model/graphs/user-profile/dot';
 import Arrow from './lib/model/graphs/user-profile/arrow';
-export {State, Dot, Arrow};
+export {UserProfile, State, Dot, Arrow};
 
+// Service-Catalog exports
+import Attribute from './lib/model/service-catalog/attribute';
+import Catalog from './lib/model/service-catalog/catalog';
+import Category from './lib/model/service-catalog/category';
+import ClamsComponent from './lib/model/service-catalog/component';
+import CloudProvider from './lib/model/service-catalog/cloud-provider';
 import Component from './lib/model/service-catalog/component';
 import ComponentWrapper from './lib/model/service-catalog/component-wrapper';
-import TemplateType from './lib/model/service-catalog/template';
+import Cost from './lib/model/service-catalog/cost';
 import EdgeType from './lib/model/service-catalog/edge-type';
 import Pattern from './lib/model/service-catalog/pattern';
 import Service from './lib/model/service-catalog/service';
-export {Component, ComponentWrapper, TemplateType, EdgeType, Pattern, Service};
+import TemplateType from './lib/model/service-catalog/template';
+export {Attribute, Catalog, Category, ClamsComponent, CloudProvider, Component, ComponentWrapper, Cost, EdgeType, Pattern, Service, TemplateType};
 
 
