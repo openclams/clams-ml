@@ -11,33 +11,38 @@ import JsonClamsProject from './lib/schema/json-model';
 import JsonCloudProvider from './lib/schema/service-catalog/json-cloud-provider';
 import JsonCostLookupTable from './lib/schema/service-catalog/json-cost-lookup-table';
 import JsonModel from './lib/schema/json-model';
-export {JsonCatalog, JsonClamsProject, JsonCloudProvider, JsonCostLookupTable, JsonModel};
+import JsonRegion from './lib/schema/service-catalog/json-region';
+export {JsonCatalog, JsonClamsProject, JsonCloudProvider, JsonCostLookupTable, JsonModel, JsonRegion};
 
 // Factory exports
 import CatalogFactory from './lib/factories/service-catalogs/catalog-factory';
+import CloudProviderFactory from './lib/factories/service-catalogs/cloud-provider-factory';
 import ComponentFactory from './lib/factories/service-catalogs/component-factory';
 import CostFactory from './lib/factories/service-catalogs/cost-factory';
 import ModelFactory from './lib/factories/model-factory';
-export {CatalogFactory, ComponentFactory, CostFactory, ModelFactory};
+export {CatalogFactory, CloudProviderFactory, ComponentFactory, CostFactory, ModelFactory};
 
-import Graph from './lib/model/graphs/graph';
+// Graphs exports
 import Edge from './lib/model/graphs/edge';
-import Node from './lib/model/graphs/node';
 import Geometry from './lib/model/graphs/geometry';
-export {Graph, Edge, Node, Geometry};
+import Graph from './lib/model/graphs/graph';
+import Node from './lib/model/graphs/node';
+export {Edge, Geometry, Graph, Node};
 
-import SequenceDiagram from './lib/model/graphs/sequence-diagram/sequence-diagram';
+// SequenceDiagram exports
 import Element from './lib/model/graphs/sequence-diagram/element';
 import Instance from './lib/model/graphs/sequence-diagram/instance';
 import Message from './lib/model/graphs/sequence-diagram/message';
+import SequenceDiagram from './lib/model/graphs/sequence-diagram/sequence-diagram';
 import Template from './lib/model/graphs/sequence-diagram/template';
-export {SequenceDiagram, Element, Instance, Message, Template};
+export {Element, Instance, Message, SequenceDiagram, Template};
 
-import UserProfile from './lib/model/graphs/user-profile/user-profile';
-import State from './lib/model/graphs/user-profile/state';
-import Dot from './lib/model/graphs/user-profile/dot';
+// UserProfile exports
 import Arrow from './lib/model/graphs/user-profile/arrow';
-export {UserProfile, State, Dot, Arrow};
+import Dot from './lib/model/graphs/user-profile/dot';
+import State from './lib/model/graphs/user-profile/state';
+import UserProfile from './lib/model/graphs/user-profile/user-profile';
+export {Arrow, Dot, State, UserProfile};
 
 // Service-Catalog exports
 import Attribute from './lib/model/service-catalog/attribute';
