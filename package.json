@@ -3,10 +3,12 @@
   "version": "1.5.6",
   "description": "Core library of the data model for the Clams modeling language.",
   "main": "./dist/public-api.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "types": "./dist/public-api.d.ts",
   "scripts": {
-    "build" : "tsc && npm pack",
+    "build": "tsc && npm pack",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/**/*.spec.ts'"
   },
   "keywords": [
@@ -16,7 +18,9 @@
   ],
   "author": "Otto Bibartiu <otto@bibartiu.de>",
   "license": "(MIT OR Apache-2.0)",
-  "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "devDependencies": {
     "@types/chai": "^4.2.13",
     "@types/mocha": "^8.0.3",
