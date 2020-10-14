@@ -2,13 +2,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./dist",
+    "outDir": "dist",
     "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "module": "esnext",
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
@@ -20,6 +20,9 @@
 	     "dom"
     ]
   },
+  "files": [
+    "./src/public-api.ts"
+  ],
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts","./dist/"]
 }

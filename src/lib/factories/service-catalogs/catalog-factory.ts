@@ -76,17 +76,34 @@ export default class CatalogFactory {
                  return;
             }
 
-           if ('parents' in jsonCatalogComponent &&
-                jsonCatalogComponent.parents &&
-                jsonCatalogComponent.parents.length > 0) {
-                const parent = cachedComponents[jsonCatalogComponent.parents[0]];
-                component.parent = parent;
-           }
+            //    if ('parents' in jsonCatalogComponent &&
+            //         jsonCatalogComponent.parents &&
+            //         jsonCatalogComponent.parents.length > 0) {
+            //         const parent = cachedComponents[jsonCatalogComponent.parents[0]];
+            //         component.parent = parent;
+            //    }
 
            if ( jsonCatalogComponent.children &&
                 jsonCatalogComponent.children.length > 0) {
-                    component.children = jsonCatalogComponent.children.map<Component>(id => cachedComponents[id]);
+                    component.children = jsonCatalogComponent.children.map<Component>(id => cachedComponents[id]).filter(p => p);
+                    component.children.forEach(c => c.parent = component);
            }
+        });
+
+        // If the child has no image, then we inherit the image of the parent.
+        components.forEach(c => {
+            // Image already contains the base path at the begining
+            // hence, we check if the end has null as string
+            if (c.img.endsWith('null')) {
+                let parent = c.parent;
+                while (parent) {
+                    if (!parent.img.endsWith('null')) {
+                        c.img = parent.img;
+                        break;
+                    }
+                    parent = parent.parent;
+                }
+            }
         });
 
         if (jsonCatalog.templates && jsonCatalog.templates.length > 0) {
@@ -140,6 +157,8 @@ export default class CatalogFactory {
                 return edgeType;
             });
         }
-        return new Catalog(edgeTypes, components, cloudProvider);
+
+        cloudProvider.catalog = new Catalog(edgeTypes, components, cloudProvider);
+        return  cloudProvider.catalog;
     }
 }

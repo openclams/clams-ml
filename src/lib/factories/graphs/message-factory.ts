@@ -3,7 +3,7 @@ import Message from '../../model/graphs/sequence-diagram/message';
 import EdgeTypeFactory from '../service-catalogs/edge-type-factory';
 import SequenceDiagram from '../../model/graphs/sequence-diagram/sequence-diagram';
 import Instance from '../../model/graphs/sequence-diagram/instance';
-import Element from '../../model/graphs/sequence-diagram/Element';
+import Element from '../../model/graphs/sequence-diagram/element';
 import Template from '../../model/graphs/sequence-diagram/template';
 
 export default class MessageFactory {

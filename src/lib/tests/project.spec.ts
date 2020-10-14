@@ -75,6 +75,7 @@ describe('Model', () => {
       {
         type: 'Service',
         id: 'service_1',
+        components: null,
         name: 'Spring Boot',
         img: 'imgurl1',
         attributes: [{
@@ -94,6 +95,7 @@ describe('Model', () => {
       {
         type: 'Service',
         id: 'service_2',
+        components: null,
         name: 'Mongo DB',
         img: 'imgurl2',
         attributes: [{
