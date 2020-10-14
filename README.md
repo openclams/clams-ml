@@ -5,8 +5,7 @@ The Clams modeling language. A package that contains the clams data model for mo
 # Build 
 
 ```shell
-tsc
-npm pack
+npm run build
 ```
 
 # Test
