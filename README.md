@@ -14,7 +14,7 @@ npm run build
 npm run test
 ```
 
-# Include Clams to own Project
+# Include ClamsML to own Project
 
 Include into your package.json the following dependency
 ```json
