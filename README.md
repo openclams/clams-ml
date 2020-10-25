@@ -18,11 +18,18 @@ npm run test
 
 Include into your package.json the following dependency
 ```json
-"devDependencies": {
-    // ...
-    "clams": "../clams-ml/clams-x.y.z.tgz"
+"dependencies": {
+    ""@openclams/clams-ml": "^1.5.7",
 }
 ```
+
+Add `.npmrc` file to project root with following content:
+```
+registry=https://npm.pkg.github.com/openclams
+//npm.pkg.github.com/:_authToken=YOUR_PERSONAL_AUTH_TOKEN
+```
+to generate `YOUR_PERSONAL_AUTH_TOKEN`, visit [GitHub Settings](https://github.com/settings/tokens) and select the `read:packages` scope.
+After copy and pasting the token, you should be able to install the package via `npm install`
 
 
 
