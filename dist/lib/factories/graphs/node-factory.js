@@ -55,7 +55,6 @@ class DotFactory {
         return {
             type: dot.getType(),
             id: dot.id,
-            graph: dot.graph,
             geometry: geometry_factory_1.default.toJSON(dot.geometry)
         };
     }
@@ -69,7 +68,6 @@ class StateFactory {
             state.graph = this;
         }
         state.geometry = geometry_factory_1.default.fromJSON(jsonState.geometry);
-        // sequenceDiagram is referenced later as we can't be sure its already loaded here
         return state;
     }
     static toJSON(state) {
@@ -77,7 +75,6 @@ class StateFactory {
             id: state.id,
             type: state.getType(),
             graph: state.graph.id,
-            sequenceDiagram: state.sequenceDiagram.id,
             geometry: geometry_factory_1.default.toJSON(state.geometry)
         };
     }

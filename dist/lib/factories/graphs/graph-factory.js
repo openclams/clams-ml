@@ -36,7 +36,7 @@ class GraphFactory {
                 graph.nodes.forEach(node => {
                     const jsonState = jsonGraph.nodes.find(n => n.id === node.id);
                     if (node instanceof state_1.default) {
-                        node.sequenceDiagram = model.graphs.find(g => g.id === jsonState.sequenceDiagram);
+                        node.sequenceDiagram = model.graphs.find(g => g.id === jsonState.graph);
                     }
                 });
             }
