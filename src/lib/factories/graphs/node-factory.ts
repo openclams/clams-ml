@@ -64,6 +64,7 @@ export class StateFactory {
             state.graph = this;
         }
         state.geometry = GeometryFactory.fromJSON(jsonState.geometry);
+        // sequenceDiagram is referenced later as we can't be sure its already loaded here
         return state;
     }
     public static toJSON(state: State): JsonNode {
@@ -71,6 +72,7 @@ export class StateFactory {
             id: state.id,
             type: state.getType(),
             graph: state.graph.id,
+            sequenceDiagram: state.sequenceDiagram.id,
             geometry: GeometryFactory.toJSON(state.geometry)
         };
     }
