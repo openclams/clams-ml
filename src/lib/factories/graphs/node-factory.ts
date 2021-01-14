@@ -50,6 +50,7 @@ export class DotFactory {
         return {
             type: dot.getType(),
             id: dot.id,
+            graph: dot.graph,
             geometry: GeometryFactory.toJSON(dot.geometry)
         };
     }
