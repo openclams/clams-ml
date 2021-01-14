@@ -10,16 +10,16 @@ const graph_1 = require("../../model/graphs/graph");
 const user_profile_1 = require("../../model/graphs/user-profile/user-profile");
 class NodeFactory {
     static fromJSON(jsonNode) {
-        if (jsonNode.type === 'Dot') {
+        if (jsonNode.type === "Dot") {
             return DotFactory.fromJSON.call(this, jsonNode);
         }
-        else if (jsonNode.type === 'State') {
+        else if (jsonNode.type === "State") {
             return StateFactory.fromJSON.call(this, jsonNode);
         }
-        else if (jsonNode.type === 'Template') {
+        else if (jsonNode.type === "Template") {
             return TemplateFactory.fromJSON.call(this, jsonNode);
         }
-        else if (jsonNode.type === 'Instance') {
+        else if (jsonNode.type === "Instance") {
             return InstanceFactory.fromJSON.call(this, jsonNode);
         }
         return null;
@@ -55,8 +55,7 @@ class DotFactory {
         return {
             type: dot.getType(),
             id: dot.id,
-            graph: dot.graph,
-            geometry: geometry_factory_1.default.toJSON(dot.geometry)
+            geometry: geometry_factory_1.default.toJSON(dot.geometry),
         };
     }
 }
@@ -76,9 +75,8 @@ class StateFactory {
         return {
             id: state.id,
             type: state.getType(),
-            graph: state.graph.id,
-            sequenceDiagram: state.sequenceDiagram.id,
-            geometry: geometry_factory_1.default.toJSON(state.geometry)
+            sequenceDiagramId: state.sequenceDiagram.id,
+            geometry: geometry_factory_1.default.toJSON(state.geometry),
         };
     }
 }
@@ -90,10 +88,10 @@ class TemplateFactory {
         template.geometry = geometry_factory_1.default.fromJSON(jsonInstance.geometry);
         if (this instanceof graph_1.default) {
             template.graph = this;
-            const componentWrapper = this.model.components.find(c => c.component.id === jsonInstance.component);
+            const componentWrapper = this.model.components.find((c) => c.component.id === jsonInstance.component);
             template.componentWrapper = componentWrapper;
-            template.nodes = jsonInstance.nodes.map(jsonNode => NodeFactory.fromJSON.call(this, jsonNode));
-            template.nodes.forEach(node => node.parent = template);
+            template.nodes = jsonInstance.nodes.map((jsonNode) => NodeFactory.fromJSON.call(this, jsonNode));
+            template.nodes.forEach((node) => (node.parent = template));
         }
         return template;
     }
@@ -103,7 +101,7 @@ class TemplateFactory {
             id: template.id,
             geometry: geometry_factory_1.default.toJSON(template.geometry),
             component: template.component.id,
-            nodes: template.nodes.map(node => NodeFactory.toJSON(node))
+            nodes: template.nodes.map((node) => NodeFactory.toJSON(node)),
         };
     }
 }
@@ -116,7 +114,7 @@ class InstanceFactory {
         if (this instanceof graph_1.default) {
             instance.graph = this;
             const name = jsonInstance.component;
-            const componentWrapper = this.model.components.find(c => c.component.getAttribute('name').value === name);
+            const componentWrapper = this.model.components.find((c) => c.component.getAttribute("name").value === name);
             instance.componentWrapper = componentWrapper;
             componentWrapper.instances.push(instance);
         }
@@ -127,7 +125,7 @@ class InstanceFactory {
             type: instance.getType(),
             id: instance.id,
             geometry: geometry_factory_1.default.toJSON(instance.geometry),
-            component: instance.component.getAttribute('name').value
+            component: instance.component.getAttribute("name").value,
         };
     }
 }

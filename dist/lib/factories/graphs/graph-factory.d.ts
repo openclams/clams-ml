@@ -1,5 +1,5 @@
-import JsonGraph from '../../schema/graphs/json-graph';
-import Graph from '../../model/graphs/graph';
+import JsonGraph from "../../schema/graphs/json-graph";
+import Graph from "../../model/graphs/graph";
 export default class GraphFactory {
     static fromJSON(jsonGraph: JsonGraph): Graph;
     /**
