@@ -1,6 +1,6 @@
 {
   "name": "@openclams/clams-ml",
-  "version": "1.5.8",
+  "version": "1.5.9",
   "description": "Core library of the data model for the Clams modeling language.",
   "main": "./dist/public-api.js",
   "files": [
