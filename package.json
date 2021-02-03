@@ -1,6 +1,6 @@
 {
   "name": "@openclams/clams-ml",
-  "version": "1.5.7",
+  "version": "1.5.9",
   "description": "Core library of the data model for the Clams modeling language.",
   "main": "./dist/clams-ml.js",
   "files": [
@@ -18,7 +18,7 @@
   ],
   "author": "Otto Bibartiu <otto@bibartiu.de>",
   "license": "(MIT OR Apache-2.0)",
-  "repository":"git://github.com/openclams/clams-ml.git",
+  "repository": "git://github.com/openclams/clams-ml.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
