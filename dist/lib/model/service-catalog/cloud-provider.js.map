@@ -1,1 +1,1 @@
-{"version":3,"file":"cloud-provider.js","sourceRoot":"","sources":["../../../../src/lib/model/service-catalog/cloud-provider.ts"],"names":[],"mappings":";;AAGA;;GAEG;AACH,MAAsB,aAAa;IAuCjC;QACE,IAAI,CAAC,OAAO,GAAG,EAAE,CAAC;QAClB,IAAI,CAAC,OAAO,GAAG,IAAI,CAAC;IACtB,CAAC;CAEF;AA5CD,gCA4CC"}
+{"version":3,"file":"cloud-provider.js","sourceRoot":"","sources":["../../../../src/lib/model/service-catalog/cloud-provider.ts"],"names":[],"mappings":";;AAGA;;GAEG;AACH,MAAsB,aAAa;IAiCjC;QACE,IAAI,CAAC,OAAO,GAAG,EAAE,CAAC;QAClB,IAAI,CAAC,OAAO,GAAG,IAAI,CAAC;IACtB,CAAC;CAEF;AAtCD,gCAsCC"}

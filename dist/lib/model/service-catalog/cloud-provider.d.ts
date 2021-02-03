@@ -16,19 +16,9 @@ export default class CloudProvider {
      * Company name, e.g. 'Amazon'
      */
     company: string;
-    /**
-     * Path/URL to the service-catalogs.json
-     */
-    basePath: string;
-    /**
-     * Path to the base folder of the cost lookup file.
-     * Full path is basePath + costLookuuPath
-     */
-    costLookupFile: string;
-    /**
-     * Name of the catalog fiel, e.g. service-catalog
-     */
-    catalogFile: string;
+    categoryListUrl: string;
+    componentUrl: string;
+    edgesUrl: string;
     /**
      * Image URL to a logo of the cloud provider
      */

@@ -6,41 +6,9 @@ import JsonAttribute from './json-attribute';
  */
 export default interface JsonEdgeType {
     /**
-     * Unique id, accross all service catalogs
-     */
-    id: string;
-    /**
      * Name of the edge type, e.g. "HTTP Communication"
      */
     name: string;
-    /**
-     * Constraints to defeine which componentes can use this
-     * edge type. This includes also child components.
-     */
-    allowed?: {
-        /**
-         * Component id
-         */
-        from: string;
-        /**
-         * Component id
-         */
-        to: string;
-    }[];
-    /**
-     * Constraints to defeine which componentes cannot use this
-     * edge type. This includes also child components.
-     */
-    exclude?: {
-        /**
-         * Component id
-         */
-        from: string;
-        /**
-         * Component id
-         */
-        to: string;
-    }[];
     /**
      * Edges have the possibility of attributes
      */

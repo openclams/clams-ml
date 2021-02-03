@@ -13,9 +13,9 @@ class CloudProviderFactory {
             target: cloudProvider.target,
             title: cloudProvider.title,
             company: cloudProvider.company,
-            costLookupFile: cloudProvider.costLookupFile,
-            basePath: cloudProvider.basePath,
-            catalogFile: cloudProvider.catalogFile,
+            categoryListUrl: cloudProvider.categoryListUrl,
+            componentUrl: cloudProvider.componentUrl,
+            edgesUrl: cloudProvider.edgesUrl,
             image: cloudProvider.image,
             regions: cloudProvider.regions.map(region => region_factory_1.default.toJSON(region))
         };

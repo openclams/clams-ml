@@ -17,18 +17,9 @@ export default interface JsonCloudProvider {
      * Company name
      */
     company: string;
-    /**
-     * relative file path to the cost look up table
-     */
-    costLookupFile: string;
-    /**
-     * base path of the service catalog
-     */
-    basePath: string;
-    /**
-     * relative file path to the service catalog
-     */
-    catalogFile: string;
+    categoryListUrl: string;
+    componentUrl: string;
+    edgesUrl: string;
     /**
      * relative image/logo of the cloud provider
      */

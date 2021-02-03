@@ -23,15 +23,8 @@ export default class Catalog {
      * @param components All its components
      */
     constructor(edges: EdgeType[], components: Component[], cloudProvider: CloudProvider);
-    /**
-     * Sort all components to categories. Categories are part of their
-     * attributes. Default category is 'None'.
-     * @param components Array of components
-     */
-    private initCategories;
     getComponentById(id: string): Component;
     getComponentByName(name: string): Component;
-    getEdgeById(id: string): EdgeType;
     getEdgeByName(name: string): EdgeType;
     getComponentsByCategoryName(name: string): Component[];
 }
