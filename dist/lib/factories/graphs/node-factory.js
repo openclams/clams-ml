@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.InstanceFactory = exports.TemplateFactory = exports.StateFactory = exports.DotFactory = void 0;
 const dot_1 = require("../../model/graphs/user-profile/dot");
 const state_1 = require("../../model/graphs/user-profile/state");
 const template_1 = require("../../model/graphs/sequence-diagram/template");

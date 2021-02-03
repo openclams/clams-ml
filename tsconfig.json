@@ -21,7 +21,7 @@
     ]
   },
   "files": [
-    "./src/public-api.ts"
+    "./src/clams-ml.ts"
   ],
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts","./dist/"]
