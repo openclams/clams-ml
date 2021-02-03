@@ -6,21 +6,22 @@ import ClamsProject from './lib/model/model';
 export {Model, ClamsProject};
 
 // Schema exports
-import JsonCatalog from './lib/schema/service-catalog/json-catalog';
+import JsonCategory from './lib/schema/service-catalog/json-category';
 import JsonClamsProject from './lib/schema/json-model';
 import JsonCloudProvider from './lib/schema/service-catalog/json-cloud-provider';
 import JsonCostLookupTable from './lib/schema/service-catalog/json-cost-lookup-table';
 import JsonModel from './lib/schema/json-model';
 import JsonRegion from './lib/schema/service-catalog/json-region';
-export {JsonCatalog, JsonClamsProject, JsonCloudProvider, JsonCostLookupTable, JsonModel, JsonRegion};
+export {JsonCategory, JsonClamsProject, JsonCloudProvider, JsonCostLookupTable, JsonModel, JsonRegion};
 
 // Factory exports
 import CatalogFactory from './lib/factories/service-catalogs/catalog-factory';
+import CatalogComponentFactory from './lib/factories/service-catalogs/catalog-component-factory';
 import CloudProviderFactory from './lib/factories/service-catalogs/cloud-provider-factory';
 import ComponentFactory from './lib/factories/service-catalogs/component-factory';
 import CostFactory from './lib/factories/service-catalogs/cost-factory';
 import ModelFactory from './lib/factories/model-factory';
-export {CatalogFactory, CloudProviderFactory, ComponentFactory, CostFactory, ModelFactory};
+export {CatalogFactory, CatalogComponentFactory, CloudProviderFactory, ComponentFactory, CostFactory, ModelFactory};
 
 // Graphs exports
 import Edge from './lib/model/graphs/edge';
@@ -45,6 +46,7 @@ import UserProfile from './lib/model/graphs/user-profile/user-profile';
 export {Arrow, Dot, State, UserProfile};
 
 // Service-Catalog exports
+import AttributeList from './lib/model/service-catalog/attribute-list';
 import Attribute from './lib/model/service-catalog/attribute';
 import Catalog from './lib/model/service-catalog/catalog';
 import Category from './lib/model/service-catalog/category';
@@ -57,6 +59,6 @@ import EdgeType from './lib/model/service-catalog/edge-type';
 import Pattern from './lib/model/service-catalog/pattern';
 import Service from './lib/model/service-catalog/service';
 import TemplateType from './lib/model/service-catalog/template';
-export {Attribute, Catalog, Category, ClamsComponent, CloudProvider, Component, ComponentWrapper, Cost, EdgeType, Pattern, Service, TemplateType};
+export {AttributeList, Attribute, Catalog, Category, ClamsComponent, CloudProvider, Component, ComponentWrapper, Cost, EdgeType, Pattern, Service, TemplateType};
 
 

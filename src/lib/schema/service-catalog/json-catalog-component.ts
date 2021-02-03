@@ -48,4 +48,9 @@ export default interface JsonCatalogComponent {
      * Array of attributes.
      */
     attributes?: JsonAttribute[];
+
+     /**
+     * For Templates: the components that are part of the template
+     */
+    components?:  JsonCatalogComponent[];
 }

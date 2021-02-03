@@ -2,11 +2,11 @@
   "name": "@openclams/clams-ml",
   "version": "1.5.7",
   "description": "Core library of the data model for the Clams modeling language.",
-  "main": "./dist/public-api.js",
+  "main": "./dist/clams-ml.js",
   "files": [
     "dist"
   ],
-  "types": "./dist/public-api.d.ts",
+  "types": "./dist/clams-ml.d.ts",
   "scripts": {
     "build": "tsc && npm pack",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/**/*.spec.ts'"

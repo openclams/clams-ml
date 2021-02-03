@@ -2,6 +2,7 @@ import Attribute from './attribute';
 import CloudProvider from './cloud-provider';
 import Category from './category';
 import Region from './region';
+import AttributeList from './attribute-list';
 
 /**
  * Gerenic component to represent,
@@ -11,7 +12,7 @@ import Region from './region';
  *
  * Components form a refinement tree.
  */
-export default  abstract class Component {
+export default  abstract class Component extends AttributeList{
 
   public category: Category;
   public children: Component[];
@@ -22,36 +23,17 @@ export default  abstract class Component {
    * @param id A unique ID
    * @param name The human-readable name
    * @param img  The component's icon
-   * @param attributes A map of attributes
    */
   constructor(public id: string,
               public name: string,
               public img: string,
-              public attributes: Attribute[],
-              public cloudProvider: CloudProvider
+              attributes: Attribute[],
+              public cloudProvider: CloudProvider,
+             
   ) {
+    super(attributes);
     this.children = [];
-    this.attributes = [];
     this.parent = null;
-  }
-
-  /**
-   * Returns the attribute if id exists, and undefined otherwise.
-   */
-  public getAttribute(id: string): Attribute {
-    return this.attributes.find(attribute => attribute.id === id);
-  }
-
-  /**
-   * Attach or repliace an attribute
-   */
-  public setAttribute(attribute: Attribute) {
-    const id = this.attributes.findIndex(a => a.id === attribute.id);
-    if (id < 0) {
-      this.attributes.push(attribute);
-    } else {
-      this.attributes[id] = attribute;
-    }
   }
 
   /**
@@ -62,9 +44,7 @@ export default  abstract class Component {
   }
 
   public bindTo(component: Component) {
-    this.children  = component.children;
     this.category = component.category;
-    this.parent = component.parent;
     this.cloudProvider = component.cloudProvider;
   }
 

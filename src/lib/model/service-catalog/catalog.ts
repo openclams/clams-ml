@@ -25,32 +25,7 @@ export default class Catalog {
    */
   constructor(public edges: EdgeType[] = [],
               public components: Component[] = [], public cloudProvider: CloudProvider) {
-    this.categories = this.initCategories(components);
-  }
-
-  /**
-   * Sort all components to categories. Categories are part of their
-   * attributes. Default category is 'None'.
-   * @param components Array of components
-   */
-  private  initCategories(components: Component[]): Category[] {
-    const categories = [];
-    for (const component of components) {
-      let categoryName = 'None';
-      if (component.getAttribute('category')) {
-        const attr = component.getAttribute('category');
-        categoryName = attr.value;
-      }
-
-      let category = categories.find((cat) => cat.name === categoryName);
-      if (!category) {
-        category = new Category(categoryName);
-        categories.push(category);
-      }
-      category.components.push(component);
-      component.category = category;
-    }
-    return categories;
+      this.categories = [];
   }
 
   public getComponentById(id: string): Component {
@@ -59,10 +34,6 @@ export default class Catalog {
 
   public getComponentByName(name: string): Component {
     return this.components.find(eachNode => eachNode.name === name);
-  }
-
-  public getEdgeById(id: string): EdgeType {
-    return this.edges.find(eachEdge => eachEdge.id === id);
   }
 
   public getEdgeByName(name: string): EdgeType {
