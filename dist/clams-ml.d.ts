@@ -7,7 +7,8 @@ import JsonCloudProvider from './lib/schema/service-catalog/json-cloud-provider'
 import JsonCostLookupTable from './lib/schema/service-catalog/json-cost-lookup-table';
 import JsonModel from './lib/schema/json-model';
 import JsonRegion from './lib/schema/service-catalog/json-region';
-export { JsonCategory, JsonClamsProject, JsonCloudProvider, JsonCostLookupTable, JsonModel, JsonRegion };
+import JsonCatalogComponent from './lib/schema/service-catalog/json-catalog-component';
+export { JsonCategory, JsonCatalogComponent, JsonClamsProject, JsonCloudProvider, JsonCostLookupTable, JsonModel, JsonRegion };
 import CatalogFactory from './lib/factories/service-catalogs/catalog-factory';
 import CatalogComponentFactory from './lib/factories/service-catalogs/catalog-component-factory';
 import CloudProviderFactory from './lib/factories/service-catalogs/cloud-provider-factory';
