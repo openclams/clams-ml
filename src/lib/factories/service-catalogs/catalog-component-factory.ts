@@ -1,29 +1,29 @@
-import JsonCatalogComponent from "../../schema/service-catalog/json-catalog-component";
-import CloudProvider from "../../model/service-catalog/cloud-provider";
-import Component from "../../model/service-catalog/component";
-import Service from "../../model/service-catalog/service";
-import Pattern from "../../model/service-catalog/pattern";
-import AttributeFactory from "./attribute-factory";
-import Template from "../../model/service-catalog/template";
+import JsonCatalogComponent from '../../schema/service-catalog/json-catalog-component';
+import CloudProvider from '../../model/service-catalog/cloud-provider';
+import Component from '../../model/service-catalog/component';
+import Service from '../../model/service-catalog/service';
+import Pattern from '../../model/service-catalog/pattern';
+import AttributeFactory from './attribute-factory';
+import Template from '../../model/service-catalog/template';
 
 export default class CatalogComponentFactory {
     public static fromJSON(cloudProvider: CloudProvider, jsonCatalogComponent: JsonCatalogComponent): Component {
         let component: Component = null;
 
-           
-        if(jsonCatalogComponent.components && jsonCatalogComponent.components.length > 0){
+
+        if (jsonCatalogComponent.components && jsonCatalogComponent.components.length > 0) {
             // We have a template
             component = new Template(jsonCatalogComponent.id,
                 jsonCatalogComponent.name,
                 jsonCatalogComponent.img, [], cloudProvider);
             // ISSUE: There is no clear specification on how to deal with components that are not part of the selected regions
             // For now, we leave services out, if they are not part of the selected region (to avoid null pointers)
-            (component as Template).components = jsonCatalogComponent.components.map<Component>(jsonCatalogComponent => {
-                return CatalogComponentFactory.fromJSON(cloudProvider,jsonCatalogComponent);
-            }).filter(c => c)
-            
-        }else{
-            if (jsonCatalogComponent.children && !jsonCatalogComponent.children.length) {
+            (component as Template).components = jsonCatalogComponent.components.map<Component>( jc => {
+                return CatalogComponentFactory.fromJSON(cloudProvider, jc);
+            }).filter(c => c);
+
+        } else {
+            if ( !('children' in jsonCatalogComponent) || (jsonCatalogComponent.children && jsonCatalogComponent.children.length === 0)) {
                 // We have a service
                 component = new Service(jsonCatalogComponent.id,
                     jsonCatalogComponent.name,
@@ -37,10 +37,10 @@ export default class CatalogComponentFactory {
                 service.regions = [];
 
                 // Consider region restrictions
-                if ('regions' in jsonCatalogComponent 
+                if ('regions' in jsonCatalogComponent
                     && jsonCatalogComponent.regions
                     && jsonCatalogComponent.regions.length > 0) {
-                        
+
                     service.regions = cloudProvider.regions.filter( region => {
                         return jsonCatalogComponent.regions.find(r => r === region.id) !== undefined;
                     });

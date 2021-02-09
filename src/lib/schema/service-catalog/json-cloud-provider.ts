@@ -21,11 +21,11 @@ export default interface JsonCloudProvider {
    */
   company: string;
 
-  categoryListUrl:string;
+  categoryListUrl: string;
 
-  componentUrl:string; 
- 
-  edgesUrl:string;
+  componentUrl: string;
+
+  edgesUrl: string;
 
   /**
    * relative image/logo of the cloud provider

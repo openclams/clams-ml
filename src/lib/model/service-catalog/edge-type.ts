@@ -1,7 +1,7 @@
 import AttributeList from './attribute-list';
 import Attribute from './attribute';
 
-export default  class EdgeType extends AttributeList{
+export default  class EdgeType extends AttributeList {
 
   /**
    * An edge type that are linked with messages in SQDs
@@ -10,5 +10,5 @@ export default  class EdgeType extends AttributeList{
   constructor(public name: string, attributes: Attribute[]) {
     super(attributes);
   }
-  
+
 }

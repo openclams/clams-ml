@@ -1,7 +1,6 @@
 import Attribute from './attribute';
 import CloudProvider from './cloud-provider';
 import Category from './category';
-import Region from './region';
 import AttributeList from './attribute-list';
 
 /**
@@ -12,7 +11,7 @@ import AttributeList from './attribute-list';
  *
  * Components form a refinement tree.
  */
-export default  abstract class Component extends AttributeList{
+export default  abstract class Component extends AttributeList {
 
   public category: Category;
   public children: Component[];
@@ -29,7 +28,7 @@ export default  abstract class Component extends AttributeList{
               public img: string,
               attributes: Attribute[],
               public cloudProvider: CloudProvider,
-             
+
   ) {
     super(attributes);
     this.children = [];

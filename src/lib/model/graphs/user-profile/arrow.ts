@@ -5,8 +5,9 @@ import Edge from '../edge';
  * the states.
  */
 export default class Arrow extends Edge {
-  public getId(): string {
-    return this.from.id + this.to.id;
+
+  constructor(from, to) {
+    super(from, to);
   }
   /**
    * Probability annotation of the arrow.
@@ -19,8 +20,8 @@ export default class Arrow extends Edge {
    */
   public shape: {x: number, y: number}[];
 
-  constructor(from, to) {
-    super(from, to);
+  public getId(): string {
+    return this.from.id + this.to.id;
   }
 
   public getType(): string {

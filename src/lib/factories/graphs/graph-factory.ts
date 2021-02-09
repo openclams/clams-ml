@@ -1,16 +1,16 @@
-import JsonGraph from "../../schema/graphs/json-graph";
-import Graph from "../../model/graphs/graph";
-import UserProfile from "../../model/graphs/user-profile/user-profile";
-import SequenceDiagram from "../../model/graphs/sequence-diagram/sequence-diagram";
-import Model from "../../model/model";
-import NodeFactory from "./node-factory";
-import EdgeFactory from "./edge-factory";
-import State from "../../model/graphs/user-profile/state";
+import JsonGraph from '../../schema/graphs/json-graph';
+import Graph from '../../model/graphs/graph';
+import UserProfile from '../../model/graphs/user-profile/user-profile';
+import SequenceDiagram from '../../model/graphs/sequence-diagram/sequence-diagram';
+import Model from '../../model/model';
+import NodeFactory from './node-factory';
+import EdgeFactory from './edge-factory';
+import State from '../../model/graphs/user-profile/state';
 
 export default class GraphFactory {
   public static fromJSON(jsonGraph: JsonGraph): Graph {
     let graph: Graph = null;
-    if (jsonGraph.type === "UserProfile") {
+    if (jsonGraph.type === 'UserProfile') {
       graph = Object.assign(new UserProfile(null), jsonGraph) as UserProfile;
     } else {
       graph = Object.assign(
@@ -37,7 +37,7 @@ export default class GraphFactory {
    *          We can introduce a cache (map) to gain speed up.
    */
   public static connectStates(jsonGraph: JsonGraph) {
-    if (jsonGraph.type === "UserProfile") {
+    if (jsonGraph.type === 'UserProfile') {
       if (this instanceof Model) {
         const model = this as Model;
         const graph = model.graphs.find((g) => g.id === jsonGraph.id);

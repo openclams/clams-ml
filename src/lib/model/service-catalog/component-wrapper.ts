@@ -1,4 +1,3 @@
-import Instance from '../graphs/sequence-diagram/instance';
 import Component from './component';
 import Element from '../graphs/sequence-diagram/element';
 /**

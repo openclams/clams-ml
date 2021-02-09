@@ -1,22 +1,22 @@
-import JsonNode from "../../schema/graphs/json-node";
-import Dot from "../../model/graphs/user-profile/dot";
-import State from "../../model/graphs/user-profile/state";
-import Template from "../../model/graphs/sequence-diagram/template";
-import Instance from "../../model/graphs/sequence-diagram/instance";
-import GeometryFactory from "./geometry-factory";
-import Graph from "../../model/graphs/graph";
-import Node from "../../model/graphs/node";
-import UserProfile from "../../model/graphs/user-profile/user-profile";
+import JsonNode from '../../schema/graphs/json-node';
+import Dot from '../../model/graphs/user-profile/dot';
+import State from '../../model/graphs/user-profile/state';
+import Template from '../../model/graphs/sequence-diagram/template';
+import Instance from '../../model/graphs/sequence-diagram/instance';
+import GeometryFactory from './geometry-factory';
+import Graph from '../../model/graphs/graph';
+import Node from '../../model/graphs/node';
+import UserProfile from '../../model/graphs/user-profile/user-profile';
 
 export default class NodeFactory {
   public static fromJSON(jsonNode: JsonNode): Node {
-    if (jsonNode.type === "Dot") {
+    if (jsonNode.type === 'Dot') {
       return DotFactory.fromJSON.call(this, jsonNode);
-    } else if (jsonNode.type === "State") {
+    } else if (jsonNode.type === 'State') {
       return StateFactory.fromJSON.call(this, jsonNode);
-    } else if (jsonNode.type === "Template") {
+    } else if (jsonNode.type === 'Template') {
       return TemplateFactory.fromJSON.call(this, jsonNode);
-    } else if (jsonNode.type === "Instance") {
+    } else if (jsonNode.type === 'Instance') {
       return InstanceFactory.fromJSON.call(this, jsonNode);
     }
     return null;
@@ -115,7 +115,7 @@ export class InstanceFactory {
       instance.graph = this;
       const name = jsonInstance.component;
       const componentWrapper = this.model.components.find(
-        (c) => c.component.getAttribute("name").value === name
+        (c) => c.component.getAttribute('name').value === name
       );
       instance.componentWrapper = componentWrapper;
       componentWrapper.instances.push(instance);
@@ -127,7 +127,7 @@ export class InstanceFactory {
       type: instance.getType(),
       id: instance.id,
       geometry: GeometryFactory.toJSON(instance.geometry),
-      component: instance.component.getAttribute("name").value,
+      component: instance.component.getAttribute('name').value,
     };
   }
 }
