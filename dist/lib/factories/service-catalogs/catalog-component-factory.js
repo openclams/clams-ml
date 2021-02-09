@@ -12,12 +12,12 @@ class CatalogComponentFactory {
             component = new template_1.default(jsonCatalogComponent.id, jsonCatalogComponent.name, jsonCatalogComponent.img, [], cloudProvider);
             // ISSUE: There is no clear specification on how to deal with components that are not part of the selected regions
             // For now, we leave services out, if they are not part of the selected region (to avoid null pointers)
-            component.components = jsonCatalogComponent.components.map(jsonCatalogComponent => {
-                return CatalogComponentFactory.fromJSON(cloudProvider, jsonCatalogComponent);
+            component.components = jsonCatalogComponent.components.map(jc => {
+                return CatalogComponentFactory.fromJSON(cloudProvider, jc);
             }).filter(c => c);
         }
         else {
-            if (jsonCatalogComponent.children && !jsonCatalogComponent.children.length) {
+            if (!('children' in jsonCatalogComponent) || (jsonCatalogComponent.children && jsonCatalogComponent.children.length === 0)) {
                 // We have a service
                 component = new service_1.default(jsonCatalogComponent.id, jsonCatalogComponent.name, jsonCatalogComponent.img, [], cloudProvider);
                 // An empty regions for services implies, that the service

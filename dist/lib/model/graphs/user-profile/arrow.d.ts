@@ -4,7 +4,7 @@ import Edge from '../edge';
  * the states.
  */
 export default class Arrow extends Edge {
-    getId(): string;
+    constructor(from: any, to: any);
     /**
      * Probability annotation of the arrow.
      */
@@ -17,6 +17,6 @@ export default class Arrow extends Edge {
         x: number;
         y: number;
     }[];
-    constructor(from: any, to: any);
+    getId(): string;
     getType(): string;
 }

@@ -10,16 +10,16 @@ const graph_1 = require("../../model/graphs/graph");
 const user_profile_1 = require("../../model/graphs/user-profile/user-profile");
 class NodeFactory {
     static fromJSON(jsonNode) {
-        if (jsonNode.type === "Dot") {
+        if (jsonNode.type === 'Dot') {
             return DotFactory.fromJSON.call(this, jsonNode);
         }
-        else if (jsonNode.type === "State") {
+        else if (jsonNode.type === 'State') {
             return StateFactory.fromJSON.call(this, jsonNode);
         }
-        else if (jsonNode.type === "Template") {
+        else if (jsonNode.type === 'Template') {
             return TemplateFactory.fromJSON.call(this, jsonNode);
         }
-        else if (jsonNode.type === "Instance") {
+        else if (jsonNode.type === 'Instance') {
             return InstanceFactory.fromJSON.call(this, jsonNode);
         }
         return null;
@@ -114,7 +114,7 @@ class InstanceFactory {
         if (this instanceof graph_1.default) {
             instance.graph = this;
             const name = jsonInstance.component;
-            const componentWrapper = this.model.components.find((c) => c.component.getAttribute("name").value === name);
+            const componentWrapper = this.model.components.find((c) => c.component.getAttribute('name').value === name);
             instance.componentWrapper = componentWrapper;
             componentWrapper.instances.push(instance);
         }
@@ -125,7 +125,7 @@ class InstanceFactory {
             type: instance.getType(),
             id: instance.id,
             geometry: geometry_factory_1.default.toJSON(instance.geometry),
-            component: instance.component.getAttribute("name").value,
+            component: instance.component.getAttribute('name').value,
         };
     }
 }

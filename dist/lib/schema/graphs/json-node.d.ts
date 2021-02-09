@@ -1,4 +1,4 @@
-import JsonGeometry from "./json-geometry";
+import JsonGeometry from './json-geometry';
 /**
  * This interface defines the shape of a node when serialized to JSON.
  * It is a union of all properties of every node type, such as elements, and states

@@ -9,7 +9,7 @@ const state_1 = require("../../model/graphs/user-profile/state");
 class GraphFactory {
     static fromJSON(jsonGraph) {
         let graph = null;
-        if (jsonGraph.type === "UserProfile") {
+        if (jsonGraph.type === 'UserProfile') {
             graph = Object.assign(new user_profile_1.default(null), jsonGraph);
         }
         else {
@@ -29,7 +29,7 @@ class GraphFactory {
      *          We can introduce a cache (map) to gain speed up.
      */
     static connectStates(jsonGraph) {
-        if (jsonGraph.type === "UserProfile") {
+        if (jsonGraph.type === 'UserProfile') {
             if (this instanceof model_1.default) {
                 const model = this;
                 const graph = model.graphs.find((g) => g.id === jsonGraph.id);

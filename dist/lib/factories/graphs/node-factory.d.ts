@@ -1,9 +1,9 @@
-import JsonNode from "../../schema/graphs/json-node";
-import Dot from "../../model/graphs/user-profile/dot";
-import State from "../../model/graphs/user-profile/state";
-import Template from "../../model/graphs/sequence-diagram/template";
-import Instance from "../../model/graphs/sequence-diagram/instance";
-import Node from "../../model/graphs/node";
+import JsonNode from '../../schema/graphs/json-node';
+import Dot from '../../model/graphs/user-profile/dot';
+import State from '../../model/graphs/user-profile/state';
+import Template from '../../model/graphs/sequence-diagram/template';
+import Instance from '../../model/graphs/sequence-diagram/instance';
+import Node from '../../model/graphs/node';
 export default class NodeFactory {
     static fromJSON(jsonNode: JsonNode): Node;
     static toJSON(node: Node): JsonNode;

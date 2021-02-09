@@ -1,4 +1,4 @@
-import Attribute from "./attribute";
+import Attribute from './attribute';
 export default abstract class AttributeList {
     attributes: Attribute[];
     constructor(attributes: Attribute[]);
