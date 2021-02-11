@@ -11,22 +11,15 @@ export default class GraphFactory {
   public static fromJSON(jsonGraph: JsonGraph): Graph {
     let graph: Graph = null;
     if (jsonGraph.type === 'UserProfile') {
-      graph = Object.assign(new UserProfile(null), jsonGraph) as UserProfile;
+        graph = Object.assign(new UserProfile(null), jsonGraph) as UserProfile;
     } else {
-      graph = Object.assign(
-        new SequenceDiagram(null),
-        jsonGraph
-      ) as SequenceDiagram;
+        graph = Object.assign(new SequenceDiagram(null), jsonGraph) as SequenceDiagram;
     }
     if (this instanceof Model) {
-      graph.model = this;
+        graph.model = this;
     }
-    graph.nodes = jsonGraph.nodes.map((jsonNode) =>
-      NodeFactory.fromJSON.call(graph, jsonNode)
-    );
-    graph.edges = jsonGraph.edges.map((jsonEdge) =>
-      EdgeFactory.fromJSON.call(graph, jsonEdge)
-    );
+    graph.nodes = jsonGraph.nodes.map(jsonNode => NodeFactory.fromJSON.call(graph, jsonNode));
+    graph.edges = jsonGraph.edges.map(jsonEdge => EdgeFactory.fromJSON.call(graph, jsonEdge));
     return graph;
   }
 
@@ -38,29 +31,27 @@ export default class GraphFactory {
    */
   public static connectStates(jsonGraph: JsonGraph) {
     if (jsonGraph.type === 'UserProfile') {
-      if (this instanceof Model) {
-        const model = this as Model;
-        const graph = model.graphs.find((g) => g.id === jsonGraph.id);
-        graph.nodes.forEach((node) => {
-          const jsonState = jsonGraph.nodes.find((n) => n.id === node.id);
-          if (node instanceof State) {
-            node.sequenceDiagram = model.graphs.find(
-              (g) => g.id === jsonState.sequenceDiagramId
-            ) as SequenceDiagram;
-          }
-        });
-      }
+        if (this instanceof Model) {
+            const model = this as Model;
+            const graph = model.graphs.find(g => g.id === jsonGraph.id);
+            graph.nodes.forEach(node => {
+                const jsonState = jsonGraph.nodes.find(n => n.id === node.id);
+                if (node instanceof State) {
+                    node.sequenceDiagram = model.graphs.find(g => g.id === jsonState.sequenceDiagramId) as SequenceDiagram;
+                }
+            });
+        }
     }
   }
 
   public static toJSON(graph: Graph): JsonGraph {
     return {
-      id: graph.id,
-      lastId: graph.lastId,
-      name: graph.name,
-      type: graph.getType(),
-      nodes: graph.nodes.map((node) => NodeFactory.toJSON(node)),
-      edges: graph.edges.map((edge) => EdgeFactory.toJSON(edge)),
+        id: graph.id,
+        lastId: graph.lastId,
+        name: graph.name,
+        type: graph.getType(),
+        nodes: graph.nodes.map(node => NodeFactory.toJSON(node)),
+        edges: graph.edges.map(edge => EdgeFactory.toJSON(edge))
     };
   }
 }
