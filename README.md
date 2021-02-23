@@ -19,7 +19,7 @@ npm run test
 Include into your package.json the following dependency
 ```json
 "dependencies": {
-    "@openclams/clams-ml": "^1.5.7",
+    "@openclams/clams-ml": "^1.6.3",
 }
 ```
 
