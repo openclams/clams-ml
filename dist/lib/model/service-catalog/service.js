@@ -19,6 +19,7 @@ class Service extends component_1.default {
         this.attributes = attributes;
         this.cloudProvider = cloudProvider;
         this.regions = [];
+        this.costs = [];
     }
     getType() {
         return 'Service';

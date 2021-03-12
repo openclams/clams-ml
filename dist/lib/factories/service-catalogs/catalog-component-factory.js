@@ -4,6 +4,7 @@ const service_1 = require("../../model/service-catalog/service");
 const pattern_1 = require("../../model/service-catalog/pattern");
 const attribute_factory_1 = require("./attribute-factory");
 const template_1 = require("../../model/service-catalog/template");
+const cost_factory_1 = require("./cost-factory");
 class CatalogComponentFactory {
     static fromJSON(cloudProvider, jsonCatalogComponent) {
         let component = null;
@@ -41,6 +42,17 @@ class CatalogComponentFactory {
                     // This service is available for all regions
                     service.regions = cloudProvider.regions;
                 }
+                // Parse cost pobjects
+                service.costs = jsonCatalogComponent.costs.map(costRegion => {
+                    if (!service.cloudProvider.regions.some(r => r.id === costRegion.region.id)) {
+                        return null;
+                    }
+                    const cost = cost_factory_1.default.fromJSON(costRegion);
+                    // Since the units fields is not available for the cost objects int he lookup table,
+                    // we simply add now the units with default 0.
+                    cost.units = 0;
+                    return cost;
+                }).filter(c => c);
                 // Assign service to regions
                 service.regions.forEach(region => region.services.push(service));
             }

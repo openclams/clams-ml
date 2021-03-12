@@ -1,10 +1,11 @@
 import JsonAttribute from '../service-catalog/json-attribute';
+import JsonCost from '../service-catalog/json-cost';
 import JsonRegion from '../service-catalog/json-region';
 /**
  * This interface defines the shape of a component when serialized to JSON.
  * It is a union of all properties of every catalog component, such as services, patterns and templates
- * ISSUE 1: Compatibility concertns of when a template is slighly modified in the service catalog
- *          For example, thwn the minOccurences is changed.
+ * ISSUE 1: Compatibility concernts of when a template is slighly modified in the service catalog
+ *          For example, when the minOccurences is changed.
  * ISSUE 2: The image field should not contain the URL, it should rather contain the binary of the image
  *          to make the model more selfe-containtent.
  */
@@ -44,4 +45,8 @@ export default interface JsonComponent {
      * An array of componentes that belong to the template.
      */
     components?: JsonComponent[];
+    /**
+     * Cost of the service per region
+     */
+    costs?: JsonCost[];
 }

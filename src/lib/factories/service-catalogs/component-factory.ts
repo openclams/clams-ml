@@ -7,6 +7,7 @@ import AttributeFactory from './attribute-factory';
 import Model from '../../model/model';
 import RegionFactory from './region-factory';
 import CloudProvider from '../../model/service-catalog/cloud-provider';
+import CostFactory from './cost-factory';
 
 
 export default class ComponentFactory {
@@ -30,6 +31,27 @@ export default class ComponentFactory {
             } else if (jsonComponent.regions) {
                 service.regions = jsonComponent.regions.map(jsonRegions => RegionFactory.fromJSON(jsonRegions));
             }
+
+            if('costs' in jsonComponent){
+                service.costs = jsonComponent.costs.map( costRegion => {
+
+                    if (service.cloudProvider && !service.cloudProvider.regions.some( r => r.id === costRegion.region.id)) {
+
+                        return null;
+
+                    }
+
+                    const cost = CostFactory.fromJSON(costRegion);
+                    // Since the units fields is not available for the cost objects int he lookup table,
+                    // we simply add now the units with default 0.
+                    if (costRegion.units) {
+                        cost.units = costRegion.units;
+                    } else {
+                        cost.units = 0;
+                    }
+                    return cost;
+                }).filter(c => c);
+            }
         } else {
             component = new TemplateType(jsonComponent.id, jsonComponent.name,  jsonComponent.img, attributes, cloudProvider);
             component.components = jsonComponent.components.map(josnComponent => ComponentFactory.fromJSON.call(this, josnComponent));
@@ -46,13 +68,15 @@ export default class ComponentFactory {
             attributes: component.attributes.map(a => AttributeFactory.toJSON(a)),
             targetCloud: component.cloudProvider.target,
             components: null,
-            regions: null
+            regions: null,
+            costs: []
         };
         if (component instanceof TemplateType) {
             jsonComponent.components = component.components.map(c => ComponentFactory.toJSON(c));
         }
         if (component instanceof Service) {
             jsonComponent.regions = component.regions.map(r => RegionFactory.toJSON(r));
+            jsonComponent.costs = component.costs.map(c => CostFactory.toJSON(c));
         }
         return jsonComponent;
     }

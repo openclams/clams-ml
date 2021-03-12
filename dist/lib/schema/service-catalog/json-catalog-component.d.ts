@@ -1,4 +1,5 @@
 import JsonAttribute from './json-attribute';
+import JsonCost from './json-cost';
 /**
  * This interface defines the shape of a catalog component when deserialized from JSON.
  * This interface is similar to  the JsonComponent interface, but adapted to the needs of
@@ -42,7 +43,11 @@ export default interface JsonCatalogComponent {
      */
     attributes?: JsonAttribute[];
     /**
-    * For Templates: the components that are part of the template
-    */
+     * For Templates: the components that are part of the template
+     */
     components?: JsonCatalogComponent[];
+    /**
+     * Cost of the service per region
+     */
+    costs?: JsonCost[];
 }

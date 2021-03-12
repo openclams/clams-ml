@@ -5,6 +5,7 @@ import Service from '../../model/service-catalog/service';
 import Pattern from '../../model/service-catalog/pattern';
 import AttributeFactory from './attribute-factory';
 import Template from '../../model/service-catalog/template';
+import CostFactory from './cost-factory';
 
 export default class CatalogComponentFactory {
     public static fromJSON(cloudProvider: CloudProvider, jsonCatalogComponent: JsonCatalogComponent): Component {
@@ -53,6 +54,22 @@ export default class CatalogComponentFactory {
                     // This service is available for all regions
                     service.regions = cloudProvider.regions;
                 }
+                // Parse cost pobjects
+                service.costs = jsonCatalogComponent.costs.map( costRegion => {
+
+                    if (!service.cloudProvider.regions.some( r => r.id === costRegion.region.id)) {
+
+                        return null;
+
+                    }
+
+                    const cost = CostFactory.fromJSON(costRegion);
+                    // Since the units fields is not available for the cost objects int he lookup table,
+                    // we simply add now the units with default 0.
+                    cost.units = 0;
+
+                    return cost;
+                }).filter(c => c);
 
                 // Assign service to regions
                 service.regions.forEach(region => region.services.push(service));

@@ -2,6 +2,7 @@ import Component from './component';
 import Attribute from './attribute';
 import CloudProvider from './cloud-provider';
 import Region from './region';
+import Cost from './cost';
 export default class Service extends Component {
     id: string;
     name: string;
@@ -13,6 +14,7 @@ export default class Service extends Component {
      * service is available.
      */
     regions: Region[];
+    costs: Cost[];
     /**
      * Patterns are components, they do not define a particular service but
      * rather group service togther to an tree structure.

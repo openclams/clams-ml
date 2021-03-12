@@ -2,6 +2,7 @@ import Component from './component';
 import Attribute from './attribute';
 import CloudProvider from './cloud-provider';
 import Region from './region';
+import Cost from './cost';
 
 export default class Service extends Component {
 
@@ -10,6 +11,9 @@ export default class Service extends Component {
    * service is available.
    */
   public regions:  Region[];
+
+  public costs: Cost[];
+
 
   /**
    * Patterns are components, they do not define a particular service but
@@ -28,15 +32,16 @@ export default class Service extends Component {
   ) {
     super(id, name, img, attributes, cloudProvider);
     this.regions = [];
+    this.costs = [];
   }
 
   public getType(): string {
     return 'Service';
   }
 
-  public bindTo(component: Component){
+  public bindTo(component: Component) {
     super.bindTo(component);
-    if (component instanceof Service){
+    if (component instanceof Service) {
       this.regions  = component.regions;
     }
   }
