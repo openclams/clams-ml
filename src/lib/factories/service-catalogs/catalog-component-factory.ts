@@ -55,21 +55,23 @@ export default class CatalogComponentFactory {
                     service.regions = cloudProvider.regions;
                 }
                 // Parse cost pobjects
-                service.costs = jsonCatalogComponent.costs.map( costRegion => {
+                if( jsonCatalogComponent.costs) {
+                    service.costs = jsonCatalogComponent.costs.map( costRegion => {
 
-                    if (!service.cloudProvider.regions.some( r => r.id === costRegion.region.id)) {
+                        if (!service.cloudProvider.regions.some( r => r.id === costRegion.region.id)) {
 
-                        return null;
+                            return null;
 
-                    }
+                        }
 
-                    const cost = CostFactory.fromJSON(costRegion);
-                    // Since the units fields is not available for the cost objects int he lookup table,
-                    // we simply add now the units with default 0.
-                    cost.units = 0;
+                        const cost = CostFactory.fromJSON(costRegion);
+                        // Since the units fields is not available for the cost objects int he lookup table,
+                        // we simply add now the units with default 0.
+                        cost.units = 0;
 
-                    return cost;
-                }).filter(c => c);
+                        return cost;
+                    }).filter(c => c);
+                }
 
                 // Assign service to regions
                 service.regions.forEach(region => region.services.push(service));
